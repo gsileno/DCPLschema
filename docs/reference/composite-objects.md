@@ -97,12 +97,14 @@ However, with the introduction of [rules](rules.md) that are only evaluated whil
                 action: #return { item: book }
             }
         }
-        duty d1 {
+
+        duty {
             holder: borrower
             counterparty: lender
             action: #return { item: book }
             violation: now() > timeout
-        }
+        } as d1
+
         +d1.violation => +power {
             holder: lender
             action: #fine { recipient: borrower }
