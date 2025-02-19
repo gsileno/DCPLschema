@@ -16,26 +16,20 @@ Objects can be active or inactive, allowing them to also be used as boolean expr
 Extensional semantics applied in formal languages are based on set-theory and consider
 classes or types as sets of instances.
 This means that they (theoretically) maintain access to an abstract data structure, used e.g. to enlist all instances, and then to check whether an instance belongs to it.
-Rather than sets of objects centrally maintained, DCPL considers the association of several descriptors to each object.
+Rather than sets of objects centrally maintained, DCPL considers the association of several descriptors to each object (e.g. like tags). In programming terms, one can think of this as _composition_ over _inheritance_.
+
+<figure markdown="span">
+    ![Descriptors](../assets/images/descriptors.svg)
+</figure>
 
 As an analogy, consider how people generally keep in their own wallets id-cards, library cards, discount coupons, membership cards, etc.
 These are examples of several “identity” certificates (unique or not) operational in different contexts, which have been issued by an authority, and of which no other copy may exist, except the one people keep with them.
 
-DCPL aims to bring the qualification act in the foreground, and it does so by means of the `is` and `becomes` operators.
+DCPL aims to bring the qualification act in the foreground, and it does so by means of [qualification events](#qualification-events) and the `is` operator. For instance, we can check whether `john` is to be considered a `student`:
 
-!!! example
-
-    This is how we express that `card_holder` agents qualify as a `member`:
-
-    ```
-    card_holder becomes member
-    ```
-
-    While this is how we check that some `person` X is a `member`:
-
-    ```
-    person_x is member
-    ```
+```
+john is student
+```
 
 #### Primitive Types
 
@@ -88,11 +82,33 @@ A special type of agent is `*`, which represents all agents.
 
 ## Events
 
-Events actively change the system (i.e. they represent a transition), and they are denoted with prefixed literals (e.g. `#borrow`). A special case of transition events are those concerning the creation or removal of objects. For instance, the activation of a raining state is denoted with `+raining`, whereas its disactivation as `-raining`.
+Events actively change the system (i.e. they represent a transition) and they object they refer to.
+
+### Action Events
+
+Actions are primitive events denoted as objects prefixed with `#` (e.g. `#shout`). An action can be performed to trigger a [reactive rule](rules.md#reactive-rules) which in turn mutates the system. However, the object `shout` only changes its state instantaneously when the action event is fired.
+
+### Production Events
+
+A special case of transition events are those concerning the (de-)activation of objects. For instance, the activation of a raining state is denoted with `+raining`, whereas its disactivation as `-raining`.
 
 !!! tip
 
     When transient, events should rather be modeled as objects (e.g. `borrowing` or `raining`), to denote for their ongoing state.
+
+### Qualification Events
+
+To assign a [descriptor](#descriptors) to an object, we can use the formula:
+
+```
+object becomes descriptor
+```
+
+To remove a [descriptor](#descriptors) from an object, we can use the formula:
+
+```
+object leaves descriptor
+```
 
 ## Refinements
 
