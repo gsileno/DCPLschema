@@ -8,9 +8,3 @@ A DCPL program is a collection of directives. Each directive constitutes a defin
 - [Trasformational Rule](rules.md#transformational-rules)
 - [Reactive Rule](rules.md#reactive-rules)
 - [Composite Object](composite-objects.md)
-
-## Overview
-
-The following diagram offers a UML-like view on DCPL information model.
-
-![Hohfeld's Framework](../assets/images/dcpl-information-model.png)

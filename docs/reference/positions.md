@@ -3,8 +3,7 @@
 Normative frames are a specific type of object, representing Hohfeld’s framework of normative concepts[^1] which includes 8 notions, distributed on 2 squares, concerning respectively deontic (or duty-related) and potestative (or power-related) directives.
 
 <figure markdown="span">
-  ![Hohfeld's Framework](../assets/images/hohfeld.png){ width="400" }
-  <figcaption>Visualization of Hohfeld's framework for normative concepts</figcaption>
+  ![Hohfeld's Framework](../assets/images/hohfeld.png){ width="60%" }
 </figure>
 
 Similarly to [eFLINT](https://gitlab.com/eflint), these concepts corresponds in DCPL to object-types with certain fixed parameters (frames, or stereotypical knowledge constructs).
@@ -14,11 +13,11 @@ Their instantiation, as that of any other object, can be conditioned by transfor
 
 Powers specify an `action` and an optional `consequence` for that action, along with an optional `holder` of the power (i.e. the class of [agents](objects-and-events.md#agents) that may perform the `action`). A power frame can be of any of the following classes: `power`, `liability`, `disability`, and `immunity`; it has the following properties:
 
-| property      | type                                                 | default     | description                                                |
-| ------------- | ---------------------------------------------------- | ----------- | ---------------------------------------------------------- |
-| `holder`      | [`agent`](../reference/objects-and-events.md#agents) | `*`         | the agent that detains the power                           |
-| `action`      | [`event`](../reference/objects-and-events.md#events) | `undefined` | the action that the holder has power to perform            |
-| `consequence` | [`directive`](../reference/objects-and-events.md)    | `undefined` | a directive that is triggered when the action is performed |
+| property      | type                                                               | default     | description                                             |
+| ------------- | ------------------------------------------------------------------ | ----------- | ------------------------------------------------------- |
+| `holder`      | [`agent`](../reference/objects-and-events.md#agents)               | `*`         | the agent that detains the power                        |
+| `action`      | [`action event`](../reference/objects-and-events.md#action-events) | `undefined` | the action that the holder can/cannot perform           |
+| `consequence` | [`event`](../reference/objects-and-events.md#events)               | `undefined` | an event that is triggered when the action is performed |
 
 !!! example
 
@@ -32,15 +31,17 @@ Powers specify an `action` and an optional `consequence` for that action, along 
 
 ## Deontic Frames
 
-A deontic frame is an object which can be of any of the following classes: `duty`, `prohibition`,`liberty`,`claim`,`protection`, `no_claim`; it has the following properties:
+A deontic frame is an object which can be of any of the following classes: `duty`, `prohibition`,`liberty`,`claim`,`protection`, `noclaim`; it has the following properties:
 
-| property       | type                                                 | default     | description                                                         |
-| -------------- | ---------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| `holder`       | [`agent`](../reference/objects-and-events.md#agents) | `*`         | the agent to which the duty applies                                 |
-| `counterparty` | [`agent`](../reference/objects-and-events.md#agents) | `*`         | the agent which is interested in the fulfillment of the duty        |
-| `action`       | [`event`](../reference/objects-and-events.md#events) | `undefined` | the action to perform in order to fulfill the duty                  |
-| `violation`    | [`external_expression`](#external-expressions)       | `undefined` | an expression to evaluate that determines when the duty is violated |
-| `termination`  | [`external_expression`](#external-expressions)       | `undefined` | an expression to evaluate that determines when the duty terminates  |
+| property       | type                                                                                          | default     | description                                                         |
+| -------------- | --------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| `holder`       | [`agent`](../reference/objects-and-events.md#agents)                                          | `*`         | the agent to which the duty applies                                 |
+| `counterparty` | [`agent`](../reference/objects-and-events.md#agents)                                          | `*`         | the agent which is interested in the fulfillment of the duty        |
+| `action`       | [`action event`](../reference/objects-and-events.md#action-events)                            | `undefined` | the action to perform in order to fulfill the duty                  |
+| `violation`    | [`event`](../reference/objects-and-events.md#events) or [`expression`](#external-expressions) | `undefined` | an expression to evaluate that determines when the duty is violated |
+| `termination`  | [`event`](../reference/objects-and-events.md#events) or [`expression`](#external-expressions) | `undefined` | an expression to evaluate that determines when the duty terminates  |
+| `fulfilled`    | `boolean`                                                                                     | `false`     | whether the duty has been fulfilled                                 |
+| `violated`     | `boolean`                                                                                     | `false`     | whether the duty has been violated                                  |
 
 All objects are here referred through [descriptors](../reference/objects-and-events.md#descriptors), which can be complete or partial. The referring mechanism is similar to Cascading Style Sheets (CSS) in the sense that the refinement may reduce the number of objects to which the policy applies.
 
