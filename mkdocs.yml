@@ -70,4 +70,5 @@ nav:
     - Composite Objects: reference/composite-objects.md
   - Examples:
     - Library Regulation: examples/library.md
+    - Modeling with Rules: examples/modeling-rules.md
     - Comparison with ODRL: examples/comparison-odrl.md
